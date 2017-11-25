@@ -85,15 +85,23 @@ void Input(){
     if(_kbhit()){ // If keyboard is pressed _kbhit() returns true.
         switch(_getch()){ // Get the character pressed.
         case 'a':
+            if (dir == RIGHT && nTail!= 0) // if current direction is opposite then just return.
+                return;
             dir = LEFT; // Set dir to LEFT.
             break;
         case 'd':
+            if (dir == LEFT && nTail!= 0) // if current direction is opposite then just return.
+                return;
             dir = RIGHT; // Set dir to RIGHT.
             break;
         case 'w':
+            if (dir == DOWN && nTail!= 0) // if current direction is opposite then just return.
+                return;
             dir = UP; // Set dir to UP.
             break;
         case 's':
+            if (dir == UP && nTail!= 0) // if current direction is opposite then just return.
+                return;
             dir = DOWN; // Set dir to DOWN.
             break;
         case 'x': // x for quit game.
@@ -166,11 +174,11 @@ void Logic(){
 // Function for Snake AI.
 void MoveSnake(){
     if(x != fruitX){
-        if(fruitX - x < 0)
+        if(fruitX - x < 0 && dir != RIGHT) // "dir != RIGHT" to avoid back collision.
             dir = LEFT;
         else
             dir = RIGHT;
-    }else if(y != fruitY){
+    }else if(y != fruitY && dir != DOWN){ // "dir != RIGHT" to avoid back collision.
         if(fruitY - y < 0)
             dir = UP;
         else
@@ -191,7 +199,7 @@ int main()
         Setup(); // Reset game.
         while(!gameOver){ // Play game until gameOver is true.
             Draw();
-            Input();
+            //Input();
             MoveSnake();
             Logic();
             if(dir == UP || dir == DOWN){
