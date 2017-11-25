@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1511636210 source:c:\users\krutp\documents\sdl projects\snakeconsolegame\main.cpp
+	<cstdlib>
+	<iostream>
+	<conio.h>
+	<time.h>
+
